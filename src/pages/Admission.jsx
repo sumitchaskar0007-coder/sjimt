@@ -789,8 +789,6 @@ export default function Admissions() {
 
   const handleSubmitEnquiry = (formData) => {
     // Handle form submission logic here
-    console.log('Form submitted:', formData)
-    console.log('Modal type:', modalType)
     // You can make API calls here
     // Example: axios.post('/api/admissions', formData)
     handleCloseModal()

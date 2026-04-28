@@ -8,7 +8,10 @@ export default function AnnouncementBar() {
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/announcements/")
       .then(res => setAnn(res.data))
-      .catch(err => console.log(err));
+      .catch(err => {
+        // Handle error silently or log to error tracking service
+        // console.error('Failed to fetch announcements:', err);
+      });
   }, []);
 
   if (ann.length === 0) return null;

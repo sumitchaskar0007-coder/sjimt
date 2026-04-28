@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-export default function Header() {
+export default function Header1() {
   const [open, setOpen] = React.useState(false);
   const [dropdown, setDropdown] = React.useState(null);
   const [mobileDropdown, setMobileDropdown] = React.useState({});
