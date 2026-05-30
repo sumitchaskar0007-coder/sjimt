@@ -23,18 +23,18 @@ export default function Header() {
       label: "AICTE Disclosure",
     },
     {
-  label: "Committee",
-  sub: [
-    {
-      to: "/assets/pdf/committees.pdf",
-      label: "Committees",
+      label: "Committee",
+      sub: [
+        {
+          to: "/assets/pdf/committees.pdf",
+          label: "Committees",
+        },
+        {
+          to: "/assets/pdf/committee2.pdf",
+          label: "Committee 2",
+        },
+      ],
     },
-    {
-      to: "/assets/pdf/committee2.pdf",
-      label: "Committee 2",
-    },
-  ],
-},
     {
       to: "/grievance",
       label: "Grievance",
@@ -45,7 +45,7 @@ export default function Header() {
         { to: "/admissions", label: "Admissions Process" },
         { to: "/academics", label: "Academics" },
         { to: "/announcements", label: "Announcements" },
-       
+
       ],
     },
     {
@@ -65,15 +65,15 @@ export default function Header() {
       label: "More",
       sub: [
         { to: "/facilities", label: "Facilities" },
-       // { to: "/library", label: "Library" },
+        // { to: "/library", label: "Library" },
         { to: "/gallery", label: "Gallery" },
         { to: "/careers", label: "Career" },
         { to: "/notices", label: "Notices" },
         { to: "/blogs", label: "Blogs" },
         { to: "/announcement", label: "Announcements" }, // Moved to More section
         { to: "/assets/pdf/24_7.pdf", label: "24*7 Women's Helpline" },
-         { to: "/assets/pdf/Result.pdf", label: "Result" },
-        { to: "https://docs.google.com/forms/d/e/1FAIpQLSdxQ73XMjb_zM0mMvZn_u8cc0UOXReDicAII5XGAE9joI5JRA/viewform?usp=dialog", label: "Feedback Form" } // Added to More section
+        { to: "/assets/pdf/Result.pdf", label: "Result" },
+        { to: "https://forms.gle/Kp35qkc64BJMFZ3FA", label: "Feedback Form" }
       ],
     },
     { to: "/contact", label: "Contact" },
@@ -101,7 +101,7 @@ export default function Header() {
   const handleLinkClick = (item) => {
     setOpen(false);
     setMobileDropdown({});
-    if (item.to?.endsWith('.pdf')) {
+    if (item.to?.startsWith('http') || item.to?.endsWith('.pdf')) {
       window.open(item.to, '_blank', 'noopener,noreferrer');
     }
   };
@@ -156,36 +156,47 @@ export default function Header() {
                   onMouseEnter={() => setDropdown(item.label)}
                   onMouseLeave={() => setDropdown("")}
                 >
-                  <button 
+                  <button
                     className={`${navLink} flex items-center gap-1`}
                     onClick={() => setDropdown(dropdown === item.label ? "" : item.label)}
                   >
                     {item.label}
-                    <ChevronDown 
-                      size={12} 
-                      className={`transition-transform duration-200 ${
-                        dropdown === item.label ? 'rotate-180' : ''
-                      }`}
+                    <ChevronDown
+                      size={12}
+                      className={`transition-transform duration-200 ${dropdown === item.label ? 'rotate-180' : ''
+                        }`}
                     />
                   </button>
 
                   {dropdown === item.label && (
                     <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded shadow-xl z-[9999]">
                       {item.sub.map((s, subIdx) => (
-                        <NavLink
-                          key={subIdx}
-                          to={s.to}
-                          className={({ isActive }) =>
-                            `block px-4 py-2 text-sm hover:bg-blue-100 ${
-                              isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-800'
-                            }`
-                          }
-                          onClick={() => setDropdown("")}
-                          target={s.to?.endsWith('.pdf') ? "_blank" : undefined}
-                          rel={s.to?.endsWith('.pdf') ? "noopener noreferrer" : undefined}
-                        >
-                          {s.label}
-                        </NavLink>
+                        s.to?.startsWith('http') ? (
+                          <a
+                            key={subIdx}
+                            href={s.to}
+                            className="block px-4 py-2 text-sm hover:bg-blue-100 text-gray-800"
+                            onClick={() => setDropdown("")}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {s.label}
+                          </a>
+                        ) : (
+                          <NavLink
+                            key={subIdx}
+                            to={s.to}
+                            className={({ isActive }) =>
+                              `block px-4 py-2 text-sm hover:bg-blue-100 ${isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-800'
+                              }`
+                            }
+                            onClick={() => setDropdown("")}
+                            target={s.to?.endsWith('.pdf') ? "_blank" : undefined}
+                            rel={s.to?.endsWith('.pdf') ? "noopener noreferrer" : undefined}
+                          >
+                            {s.label}
+                          </NavLink>
+                        )
                       ))}
                     </div>
                   )}
@@ -220,53 +231,77 @@ export default function Header() {
                   className="w-full text-left text-white text-sm font-semibold py-2 border-b border-blue-800 flex items-center justify-between hover:bg-blue-900/50 px-2 rounded"
                 >
                   {item.label}
-                  <ChevronDown 
-                    size={16} 
-                    className={`transition-transform duration-200 ${
-                      mobileDropdown[item.label] ? 'rotate-180' : ''
-                    }`}
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform duration-200 ${mobileDropdown[item.label] ? 'rotate-180' : ''
+                      }`}
                   />
                 </button>
 
                 {/* Mobile dropdown items with animation */}
-                <div 
-                  className={`overflow-hidden transition-all duration-200 ${
-                    mobileDropdown[item.label] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                  }`}
+                <div
+                  className={`overflow-hidden transition-all duration-200 ${mobileDropdown[item.label] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
                 >
                   {item.sub.map((s, subIdx) => (
-                    <NavLink
-                      key={subIdx}
-                      to={s.to}
-                      onClick={() => handleLinkClick(s)}
-                      className={({ isActive }) =>
-                        `block pl-6 py-2 text-sm text-white border-b border-blue-900 hover:bg-blue-900/50 ${
-                          isActive ? 'bg-blue-800' : ''
-                        }`
-                      }
-                      target={s.to?.endsWith('.pdf') ? "_blank" : undefined}
-                      rel={s.to?.endsWith('.pdf') ? "noopener noreferrer" : undefined}
-                    >
-                      {s.label}
-                    </NavLink>
+                    s.to?.startsWith('http') ? (
+                      <a
+                        key={subIdx}
+                        href={s.to}
+                        className="block pl-6 py-2 text-sm text-white border-b border-blue-900 hover:bg-blue-900/50"
+                        onClick={() => setOpen(false)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {s.label}
+                      </a>
+                    ) : (
+                      <NavLink
+                        key={subIdx}
+                        to={s.to}
+                        onClick={() => handleLinkClick(s)}
+                        className={({ isActive }) =>
+                          `block pl-6 py-2 text-sm text-white border-b border-blue-900 hover:bg-blue-900/50 ${isActive ? 'bg-blue-800' : ''
+                          }`
+                        }
+                        target={s.to?.endsWith('.pdf') ? "_blank" : undefined}
+                        rel={s.to?.endsWith('.pdf') ? "noopener noreferrer" : undefined}
+                      >
+                        {s.label}
+                      </NavLink>
+                    )
                   ))}
                 </div>
               </div>
             ) : (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                onClick={() => handleLinkClick(item)}
-                className={({ isActive }) =>
-                  `block py-2 text-sm text-white border-b border-blue-900 hover:bg-blue-900/50 px-2 rounded ${
-                    isActive ? 'bg-blue-800' : ''
-                  }`
-                }
-                target={item.to?.endsWith('.pdf') ? "_blank" : undefined}
-                rel={item.to?.endsWith('.pdf') ? "noopener noreferrer" : undefined}
-              >
-                {item.label}
-              </NavLink>
+              {
+                item.to?.startsWith('http') ? (
+                  <a
+                    key={item.to}
+                    href={item.to}
+                    className="block py-2 text-sm text-white border-b border-blue-900 hover:bg-blue-900/50 px-2 rounded"
+                    onClick={() => setOpen(false)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => handleLinkClick(item)}
+                    className={({ isActive }) =>
+                      `block py-2 text-sm text-white border-b border-blue-900 hover:bg-blue-900/50 px-2 rounded ${isActive ? 'bg-blue-800' : ''
+                      }`
+                    }
+                    target={item.to?.endsWith('.pdf') ? "_blank" : undefined}
+                    rel={item.to?.endsWith('.pdf') ? "noopener noreferrer" : undefined}
+                  >
+                    {item.label}
+                  </NavLink>
+                )
+              }
             )
           )}
         </div>
