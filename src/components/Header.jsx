@@ -274,34 +274,32 @@ export default function Header() {
                 </div>
               </div>
             ) : (
-              {
-                item.to?.startsWith('http') ? (
-                  <a
-                    key={item.to}
-                    href={item.to}
-                    className="block py-2 text-sm text-white border-b border-blue-900 hover:bg-blue-900/50 px-2 rounded"
-                    onClick={() => setOpen(false)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    onClick={() => handleLinkClick(item)}
-                    className={({ isActive }) =>
-                      `block py-2 text-sm text-white border-b border-blue-900 hover:bg-blue-900/50 px-2 rounded ${isActive ? 'bg-blue-800' : ''
-                      }`
-                    }
-                    target={item.to?.endsWith('.pdf') ? "_blank" : undefined}
-                    rel={item.to?.endsWith('.pdf') ? "noopener noreferrer" : undefined}
-                  >
-                    {item.label}
-                  </NavLink>
-                )
-              }
+              item.to?.startsWith('http') ? (
+                <a
+                  key={item.to}
+                  href={item.to}
+                  className="block py-2 text-sm text-white border-b border-blue-900 hover:bg-blue-900/50 px-2 rounded"
+                  onClick={() => setOpen(false)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => handleLinkClick(item)}
+                  className={({ isActive }) =>
+                    `block py-2 text-sm text-white border-b border-blue-900 hover:bg-blue-900/50 px-2 rounded ${isActive ? 'bg-blue-800' : ''
+                    }`
+                  }
+                  target={item.to?.endsWith('.pdf') ? "_blank" : undefined}
+                  rel={item.to?.endsWith('.pdf') ? "noopener noreferrer" : undefined}
+                >
+                  {item.label}
+                </NavLink>
+              )
             )
           )}
         </div>
