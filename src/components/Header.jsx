@@ -73,6 +73,8 @@ export default function Header() {
         { to: "/announcement", label: "Announcements" }, // Moved to More section
         { to: "/assets/pdf/24_7.pdf", label: "24*7 Women's Helpline" },
         { to: "/assets/pdf/Result.pdf", label: "Result" },
+                { to: "/assets/pdf/Result1.pdf", label: "Topper's Result" },
+
         { to: "https://forms.gle/Kp35qkc64BJMFZ3FA", label: "Feedback Form" }
       ],
     },
