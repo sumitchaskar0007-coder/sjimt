@@ -10,8 +10,11 @@ import {
   Landmark,
   FileText,
   Gavel,
-  GraduationCap
+  GraduationCap,
+  Download,
+  Library // Add this icon for Udan 9
 } from "lucide-react";
+import { udanBooks } from "../data/udanBooks";
 
 const udanPrograms = [
   {
@@ -69,6 +72,14 @@ const udanPrograms = [
     icon: <GraduationCap />,
     description:
       "Leadership, ethics, and preparation for the legal profession."
+  },
+  // Add Udan 9
+  {
+    id: 9,
+    title: "Udan 9",
+    icon: <Library />,
+    description:
+      "Advanced legal research, case analysis, and scholarly writing."
   }
 ];
 
@@ -82,7 +93,7 @@ export default function Udan() {
         </title>
         <meta
           name="description"
-          content="Udan Program at Jadhavar College of Law Pune includes Udan 1 to Udan 8 focusing on legal awareness, advocacy skills, moot court training, and professional development."
+          content="Udan Program at Jadhavar College of Law Pune includes Udan 1 to Udan 9 focusing on legal awareness, advocacy skills, moot court training, and professional development."
         />
         <meta
           name="keywords"
@@ -136,12 +147,22 @@ export default function Udan() {
                   {udan.description}
                 </p>
 
-                <Link
-                  to={`/udan/${udan.id}`}
-                  className="text-sm font-semibold text-blue-700 hover:underline"
-                >
-                  View Details →
-                </Link>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Link
+                    to={`/udan/${udan.id}`}
+                    className="text-sm font-semibold text-blue-700 hover:underline"
+                  >
+                    View Details →
+                  </Link>
+                  <a
+                    href={udanBooks[udan.id]?.pdf || '#'}
+                    download
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:underline"
+                  >
+                    <Download size={16} />
+                    Download PDF
+                  </a>
+                </div>
               </motion.div>
             ))}
           </div>

@@ -54,5 +54,13 @@ export const udanBooks = {
     pdf: "/assets/books/Udan8.pdf",
     description:
       "Focuses on ethics, professionalism, leadership, and career readiness in law."
+  },
+  // Add Udan 9
+  9: {
+    title: "Udan 9 – Advanced Legal Research",
+    cover: "/assets/books/udan.png",
+    pdf: "/assets/books/Udan9.pdf",
+    description:
+      "Advanced legal research methodologies, case analysis, and scholarly writing skills."
   }
 };
