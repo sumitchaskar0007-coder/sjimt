@@ -118,6 +118,34 @@ export default function HeroSection() {
         </div>
       </section>
 
+      {/* ================= CAP ROUND 1 MERIT LIST ================= */}
+      <section className="w-full bg-yellow-50 border-y border-yellow-200 py-6">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 rounded-xl bg-white border border-yellow-300 p-6 shadow-sm">
+            <div>
+              <span className="inline-flex rounded-full bg-red-600 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+                New Admission Update
+              </span>
+              <h2 className="mt-3 text-2xl md:text-3xl font-bold text-blue-900">
+                MCA Against CAP Admission Merit List – Round 1
+              </h2>
+              <p className="mt-2 text-gray-600">
+                View the CAP Round 1 merit list for MCA admissions.
+              </p>
+            </div>
+
+            <a
+              href="/assets/pdf/cap_round1.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center justify-center rounded-lg bg-blue-900 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-blue-800 hover:shadow-lg"
+            >
+              View Merit List PDF
+            </a>
+          </div>
+        </div>
+      </section>
+
 
       {/* ================= WELCOME MESSAGE ================= */}
       <section className="w-full bg-white py-16">
