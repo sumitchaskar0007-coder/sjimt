@@ -2,6 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import FAQSection from "../components/FAQSection";
+import SyllabusSection from "../components/SyllabusSection";
 import { Link } from "react-router-dom";
 
 import { motion } from "framer-motion";
@@ -117,6 +118,10 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
+
+      <div className="mx-auto max-w-7xl px-6 py-10">
+        <SyllabusSection />
+      </div>
 
       {/* ================= WELCOME MESSAGE ================= */}
       <section className="w-full bg-white py-16">

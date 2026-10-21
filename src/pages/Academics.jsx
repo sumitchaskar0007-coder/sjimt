@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import SyllabusSection from "../components/SyllabusSection";
 import {
   CalendarDays,
   BookOpen,
@@ -119,6 +120,8 @@ export default function Academics() {
               develop skilled IT professionals and responsible technocrats.
             </p>
           </motion.div>
+
+          <SyllabusSection />
 
           {/* ================= INTAKE INFORMATION ================= */}
           <motion.div
